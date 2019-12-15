@@ -23,7 +23,7 @@ stages:
     - task: Docker@2
       inputs:
         containerRegistry: 'Dockerhub'
-        repository: 'xmrig'
+        repository: 'debar/xmrig'
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
         tags: |
