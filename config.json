@@ -4,6 +4,7 @@
     "cpu": true,
     "opencl": false,
     "cuda": false,
+    "colors": false,
     "pools": [
         {
             "coin": "monero",
