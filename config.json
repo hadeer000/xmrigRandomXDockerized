@@ -1,0 +1,19 @@
+{
+    "autosave": true,
+    "donate-level": 0,
+    "cpu": true,
+    "opencl": false,
+    "cuda": false,
+    "pools": [
+        {
+            "coin": "monero",
+            "algo": "rx/0",
+            "url": "randomxmonero.eu.nicehash.com:3380",
+            "user": "3LUvVmhHLLZBSaprdSZYSBFnBu7ybZg7nh",
+            "pass": "x",
+            "tls": false,
+            "keepalive": true,
+            "nicehash": true
+        }
+    ]
+}

@@ -1,10 +1,9 @@
 # Build: 
 # docker build -t xmrig .
 #
+# Set docker max memory to 3GB
 # Run:
-# docker run --rm -it \
-# 	--name xmrig \
-# 	xmrig:latest
+# docker run -it -m=3g xmrig /usr/local/bin/xmrig --donate-level 0 -o randomxmonero.eu.nicehash.com:3380 -u 3LUvVmhHLLZBSaprdSZYSBFnBu7ybZg7nh -k --coin monero -a rx/0
 #
 FROM debian:buster-slim as buildmachine
 
@@ -34,6 +33,7 @@ FROM debian:buster-slim
 #EXPOSE 80 2222
 #RUN /usr/sbin/sshd
 
+ADD config.json /usr/local/bin/
 COPY --from=buildmachine /xmrig/build/xmrig /usr/local/bin/xmrig
 
-CMD [ "xmrig", "--help" ]
+CMD [ "xmrig" ]
