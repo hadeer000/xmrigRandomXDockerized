@@ -26,14 +26,9 @@ RUN pwd
 # runtime
 FROM debian:buster-slim
 
-# ssh for app service deployment
-#RUN apt-get install openssh-server -y && echo "root:Docker!" | chpasswd
-#RUN mkdir /run/sshd
-#COPY sshd_config /etc/ssh/
-#EXPOSE 80 2222
-#RUN /usr/sbin/sshd
-
 ADD config.json /usr/local/bin/
 COPY --from=buildmachine /xmrig/build/xmrig /usr/local/bin/xmrig
 
-CMD [ "xmrig" ]
+ENV XMRIG_USER="3LUvVmhHLLZBSaprdSZYSBFnBu7ybZg7nh"
+
+CMD bash -c 'sed -i 's/3LUvVmhHLLZBSaprdSZYSBFnBu7ybZg7nh/${XMRIG_USER}/g' /usr/local/bin/config.json; xmrig'
