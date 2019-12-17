@@ -3,20 +3,30 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "siteName": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": "nh-docker"
         },
         "siteLocation": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": "West Europe",
+            "allowedValues": [
+                "West US",
+                "East US",
+                "West Europe",
+                "West US 2",
+                "North Europe",
+                "Central US EUAP",
+                "East US 2 EUAP",
+                "Southeast Asia",
+                "East US 2",
+                "Central US",
+                "Australia East",
+                "UK South"
+            ]
         },
         "NicehashBTC": {
             "type": "string",
             "defaultValue": "3LUvVmhHLLZBSaprdSZYSBFnBu7ybZg7nh"
-        },
-        "repoUrl": {
-            "type": "string"
-        },
-        "branch": {
-            "type": "string"
         },
         "RandString": {
             "type": "string",
