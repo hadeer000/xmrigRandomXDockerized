@@ -37,7 +37,7 @@
             "properties": {
                 "containers": [
                     {
-                        "name": "[parameters('siteName')]",
+                        "name": "toLower([parameters('siteName')])",
                         "properties": {
                             "image": "debar/xmrig",
                             "ports": [
