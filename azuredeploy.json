@@ -5,9 +5,6 @@
         "siteName": {
             "type": "string"
         },
-        "hostingPlanName": {
-            "type": "string"
-        },
         "siteLocation": {
             "type": "string"
         },
@@ -20,16 +17,23 @@
         },
         "branch": {
             "type": "string"
+        },
+        "RandString": {
+            "type": "string",
+            "defaultValue": "[substring(uniqueString(newGuid()),0,4)]"
         }
     },
     "variables": {
     },
     "resources": [
         {
-            "name": "[parameters('hostingPlanName')]",
+            "name": "[concat(parameters('siteName'),'-',parameters('RandString'))]",
             "type": "Microsoft.ContainerInstance/containerGroups",
             "apiVersion": "2018-04-01",
             "location": "[parameters('siteLocation')]",
+            "tags": {
+                "Docker": "Nicehash"
+            },
             "properties": {
                 "containers": [
                     {
@@ -42,7 +46,7 @@
                             "environmentVariables": [
                                 {
                                     "name": "XMRIG_USER",
-                                    "value": "[concat(parameters('Nicehash BTC'),'.',parameters('hostingPlanName'))]"
+                                    "value": "[concat(parameters('Nicehash BTC'),'.',parameters('RandString'))]"
                                 }
                             ],
                             "resources": {
