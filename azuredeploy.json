@@ -11,15 +11,6 @@
         "siteLocation": {
             "type": "string"
         },
-        "workerSize": {
-            "type": "string",
-            "allowedValues": [
-                "0",
-                "1",
-                "2"
-            ],
-            "defaultValue": "0"
-        },
         "Nicehash BTC": {
             "type": "string",
             "defaultValue": "3LUvVmhHLLZBSaprdSZYSBFnBu7ybZg7nh"
