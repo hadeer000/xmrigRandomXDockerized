@@ -58,4 +58,4 @@ sleep $(($timeFrame * 60))
 
 az group delete -n $resourceGroup -y
 
-print "Finished!"
+echo "Finished!"
