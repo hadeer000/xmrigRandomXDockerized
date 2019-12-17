@@ -1,9 +1,33 @@
 #!/bin/bash
 
-nicehash_btc="$1"
-instances=6
+#the rg this should be deployed into
 resourceGroup="docker-nh"
+#location optional parameter
 location="westeurope"
+
+wantedEurConsumption="$1"
+#if no first parameter is send we will spend about one euro
+if [ -z "$wantedEurConsumption" ]
+then
+   wantedEurConsumption=1
+fi
+
+#your nicehash btc addr
+nicehash_btc="$2"
+
+# in how many minutes the work should be done?
+timeFrame=5
+
+#-------
+#end of configuration
+
+costPerDay=2.86
+
+set -f
+instancesCalc="\"$wantedEurConsumption / ( $timeFrame * ( $costPerDay / (24 * 60)))\""
+instances=$(bash -c "echo $instancesCalc | bc -l")
+set +f
+instances=$(echo ${instances%\.*})
 
 command -v jq >/dev/null 2>&1 || { echo >&2 "Install jq with apt install jq or brew install jq."; exit 1; }
 originalRandomnessEntry=`jq -r '.resources[0] ' azuredeploy.json`
@@ -31,3 +55,9 @@ az group create -n $resourceGroup -l $location
 az group deployment create --template-file azuredeployEdited.json --parameters siteName=$resourceGroup siteLocation=$location repoUrl=none branch=master -g $resourceGroup
 
 rm azuredeployEdited.json
+
+sleep $(($timeFrame * 60))
+
+az group delete -n $resourceGroup -y
+
+print "Finished!"
