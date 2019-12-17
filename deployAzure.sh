@@ -2,8 +2,6 @@
 
 #the rg this should be deployed into
 resourceGroup="docker-nh"
-#location optional parameter
-location="westeurope"
 
 wantedEurConsumption="$1"
 #if no first parameter is send we will spend about one euro
@@ -16,7 +14,7 @@ fi
 nicehash_btc="$2"
 
 # in how many minutes the work should be done?
-timeFrame=5
+timeFrame=60
 
 #-------
 #end of configuration
@@ -50,9 +48,9 @@ done
 
 echo $generatedJson | jq . > azuredeployEdited.json
 
-az group create -n $resourceGroup -l $location
+az group create -n $resourceGroup -l westeurope
 
-az group deployment create --template-file azuredeployEdited.json --parameters siteName=$resourceGroup siteLocation=$location repoUrl=none branch=master -g $resourceGroup
+az group deployment create --template-file azuredeployEdited.json --parameters siteName=$resourceGroup -g $resourceGroup
 
 rm azuredeployEdited.json
 
