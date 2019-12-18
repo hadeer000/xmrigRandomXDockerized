@@ -7,6 +7,10 @@ For more options see deployAzure.sh and run in cloud shell!
 
 2.86 Eur per day
 
+# Real cost after fixing huge pages
+
+3.5 Euro per day
+
 # Gain calc 17. Dec 2019
 
 0.10 Euro per day

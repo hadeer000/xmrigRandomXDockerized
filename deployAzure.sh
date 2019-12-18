@@ -19,7 +19,7 @@ timeFrame=60
 #-------
 #end of configuration
 
-costPerDay=2.86
+costPerDay=3.5
 
 set -f
 instancesCalc="\"$wantedEurConsumption / ( $timeFrame * ( $costPerDay / (24 * 60)))\""
