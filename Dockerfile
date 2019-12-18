@@ -21,7 +21,6 @@ RUN cd xmrig/scripts && ./build_deps.sh
 RUN mkdir xmrig/build && cd xmrig/build && cmake .. -DXMRIG_DEPS=scripts/deps && make -j$(nproc)
 
 RUN ls -la xmrig/build
-RUN pwd
 
 # runtime
 FROM debian:buster-slim
